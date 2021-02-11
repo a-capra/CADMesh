@@ -13,9 +13,9 @@ include(ExternalProject)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
 
-# Make the include and lib directories in the build area.
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/include)
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+## Make the include and lib directories in the build area.
+#file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/include)
+#file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # GEANT4
 option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
@@ -46,7 +46,9 @@ else()
         GIT_REPOSITORY https://github.com/christopherpoole/tetgen.git
         CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}
     )
-    include_directories(${PROJECT_BINARY_DIR}/include)
+    #include_directories(${PROJECT_BINARY_DIR}/include/)
+    include_directories(${PROJECT_SOURCE_DIR}/external/tetgen)
+    message("tetgen headers: ${PROJECT_SOURCE_DIR}/external/tetgen")
 endif()
 
 # Open Asset Importer Library
@@ -61,7 +63,9 @@ else()
         GIT_TAG v3.1.1
         CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR}
     )
-    include_directories(${PROJECT_BINARY_DIR}/include/assimp/include)
+    #include_directories(${PROJECT_BINARY_DIR}/include/assimp/include)
+    include_directories(${PROJECT_SOURCE_DIR}/external/assimp/include/assimp)
+    message("assimp headers ${PROJECT_SOURCE_DIR}/external/assimp/include/assimp")
 endif()
 
 # CADMesh
