@@ -27,6 +27,8 @@
 #include "G4NistManager.hh"
 #include "G4Material.hh"
 
+#include "G4VisAttributes.hh"
+
 
 DetectorConstruction::DetectorConstruction()
 {
@@ -46,9 +48,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     world_logical = new G4LogicalVolume(world_solid, air,"world_logical",0,0,0);
     world_physical = new G4PVPlacement(0, G4ThreeVector(), world_logical,
                                        "world_physical", 0, false, 0);
-    world_logical->SetVisAttributes(G4VisAttributes::Invisible);
+    world_logical->SetVisAttributes(G4VisAttributes::GetInvisible());
 
-    CADMesh * mesh = new CADMesh((char*) /*PATH TO YOUR PLY OR STL FILE*/);
+    /*PATH TO YOUR PLY OR STL FILE
+     for example models/cone.ply*/
+    char example[]="./cone.ply";
+    CADMesh * mesh = new CADMesh(example);
     mesh->SetScale(mm);
 
     cad_solid = mesh->TessellatedMesh();
