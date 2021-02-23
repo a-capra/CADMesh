@@ -89,7 +89,6 @@ target_link_libraries(cadmesh ${Geant4_LIBRARIES})
 # Build the examples as well.
 if(${WITH_EXAMPLES} MATCHES "ON")
     add_subdirectory(${PROJECT_SOURCE_DIR}/examples/basic)
-    add_subdirectory(${PROJECT_SOURCE_DIR}/examples/template)
 endif()
 
 # Configure the installation.
