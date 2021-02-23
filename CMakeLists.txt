@@ -76,11 +76,11 @@ include_directories(${PROJECT_BINARY_DIR}/include)
 add_library(cadmesh "SHARED" ${sources} ${headers}) 
 
 # Link against either the system libraries, or the external project libaries.
-if(${WITH_SYS_TETGEN} MATCHES "OFF")
+if(${WITH_SYS_TETGEN} MATCHES "ON")
     target_link_libraries(cadmesh tet)
 endif()
 
-if(${WITH_SYS_ASSIMP} MATCHES "OFF")
+if(${WITH_SYS_ASSIMP} MATCHES "ON")
     target_link_libraries(cadmesh assimp)
 endif()
 
